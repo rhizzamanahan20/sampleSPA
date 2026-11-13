@@ -1,2 +1,402 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><meta content="#51141e" name="theme-color"/><title>Sparadise | Massage &amp; Spa</title><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&amp;family=Playfair+Display:wght@400;500;600&amp;display=swap" rel="stylesheet"/><link href="styles.css" rel="stylesheet"/></head><body><header class="header"><a class="brand" href="#home"><img alt="Sparadise logo" src="assets/logo.jpg"/><span>SPARADISE<small>MASSAGE &amp; SPA</small></span></a><button aria-expanded="false" aria-label="Toggle navigation" class="menu">☰</button><nav id="nav"><a href="#home">Home</a><a href="#services">Services</a><a href="#about">About</a><a href="#contact">Contact</a><a class="nav-book" href="#booking">Book Now ↗</a></nav></header><main><section class="hero" id="home"><img alt="Luxurious tropical spa with massage tables" class="hero-img" src="assets/spa-hero.png"/><div class="hero-shade"></div><div class="hero-content"><span class="eyebrow">WELCOME TO YOUR SANCTUARY</span><h1>Your moment<br/>of <em>paradise.</em></h1><p>Unwind, recharge, and rediscover your calm. Your escape from the everyday begins here.</p><div class="hero-actions"><a class="btn gold" href="#booking">Book Your Escape <span>↗</span></a><a class="btn outline" href="#services">Explore Services</a></div></div><span class="hero-bottom">✦   RELAX · RESTORE · REJUVENATE</span></section><section class="intro section"><span class="eyebrow dark">A LITTLE PEACE, JUST FOR YOU</span><h2>Where relaxation<br/>feels like <em>paradise.</em></h2><p>Step away from the rush and make room for yourself. At Sparadise Massage and Spa, every visit is an invitation to slow down and feel renewed.</p><div class="ornament">✦</div></section><section class="services section" id="services"><div class="section-head"><div><span class="eyebrow dark">TREAT YOURSELF</span><h2>Our <em>Services</em></h2></div><p>Explore our massage treatments, body care, and upgrades. Select a treatment to request an appointment.</p></div><div class="treatment-panel" id="serviceGrid"><div class="treatment-layout"><div class="treatment-photo"><img alt="Relaxing massage treatment with warm spa lighting" loading="lazy" src="assets/massage-treatment.jpg"/><div class="photo-caption">THE ART OF RELAXATION ✦</div></div><div class="treatment-content"><div aria-label="Service categories" class="tabs" role="tablist"><button class="tab active" data-category="Specialized" type="button">Specialized</button><button class="tab" data-category="Therapeutic" type="button">Therapeutic</button><button class="tab" data-category="Mom &amp; Baby" type="button">Mom &amp; Baby</button><button class="tab" data-category="Body Care" type="button">Body Care</button><button class="tab" data-category="Upgrades" type="button">Upgrades</button></div><div aria-live="polite" class="service-items" id="serviceItems"></div><p class="menu-tip">Tap a treatment to add it to your booking request.</p></div></div><div class="menu-photo-link"><a href="assets/official-menu.jpg" rel="noopener" target="_blank">View official full price list ↗</a></div></div></section><section class="visit-options section"><span class="eyebrow dark">RELAX YOUR WAY</span><h2>Walk-In <em>or</em> Home Service</h2><div class="visit-grid"><article><h3>✦ Walk-In</h3><p>Serene ambiance, spa aroma and music, distraction-free me-time, and professional care in a clean setting.</p><a href="#booking">Book a Walk-In ↗</a></article><article><h3>⌂ Home Service</h3><p>Enjoy convenience, flexible scheduling, and private personalized care in the comfort of your own space.</p><a href="#booking">Request Home Service ↗</a></article></div><p class="tagline">WE DELIVER PEACE HOWEVER YOU WANT IT.</p><p class="home-note"><strong>Home service:</strong> ₱100 transportation fee · Minimum 2 hours per therapist · Can be shared by two people</p></section><section class="feature" id="about"><div class="feature-image"><img alt="Warm stone massage treatment" src="assets/hotstone-massage.jpg"/></div><div class="feature-copy"><span class="eyebrow">THE SPARADISE EXPERIENCE</span><h2>A pause you<br/><em>deserve.</em></h2><p>Whether you're planning a little me-time or a thoughtful treat for someone special, Sparadise is here to help you find your calm.</p><a class="btn gold" href="#booking">Reserve Your Moment ↗</a></div></section><section class="booking section" id="booking"><div class="booking-heading"><span class="eyebrow dark">YOUR TIME TO UNWIND</span><h2>Book an <em>Appointment</em></h2><p>Choose your preferred treatment, date and time. Submit your request and we’ll receive the details by email. We’ll contact you to confirm availability.</p></div><form class="booking-form" id="bookingForm"><div class="form-grid"><label>Appointment type<select id="appointmentType" name="type" required=""><option value="">Choose appointment type</option><option value="Walk-In">Walk-In (at the spa)</option><option value="Home Service">Home Service</option></select></label><label>Full name<input autocomplete="name" name="name" placeholder="Your full name" required=""/></label><label>Mobile number<input autocomplete="tel" inputmode="tel" name="phone" placeholder="09XX XXX XXXX" required=""/></label><label>Preferred service<select id="serviceSelect" name="service" required=""><option value="">Select a service</option></select></label><label>Duration / option<select id="durationSelect" name="duration" required=""><option value="">Select duration or option</option></select></label><label>Number of guests<select name="guests" required=""><option value="1">1 guest</option><option value="2">2 guests</option><option value="3">3 guests</option><option value="4">4 guests</option></select></label><label>Preferred date<input id="date" name="date" required="" type="date"/></label><label>Preferred time<input name="time" required="" type="time"/></label></div><label hidden="" id="addressWrap">Home service address<textarea id="homeAddress" name="address" placeholder="House number, street, barangay, city, landmarks" rows="2"></textarea></label><label>Special requests (optional)<textarea name="notes" placeholder="Anything you'd like us to know?" rows="4"></textarea></label><input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px"/><button class="btn burgundy" id="submitBooking" type="submit">Send Booking Request ↗</button><p id="bookingStatus" role="status" aria-live="polite"></p><p class="form-hint">Appointment requests are subject to confirmation. Open daily 2:00 PM–2:00 AM. Home service: ₱100 transport fee and minimum 2 hours per therapist (may be shared by two people).</p><div class="booking-result" hidden="" id="bookingResult"><strong>Booking request sent!</strong><p id="bookingSummary"></p><p class="form-hint">We have submitted your request for email delivery. Your appointment is not confirmed until Sparadise contacts you.</p><a class="btn light" href="https://www.facebook.com/sparadisemassagespa" rel="noopener" target="_blank">Questions? Chat with us ↗</a></div></form></section><section class="contact section" id="contact"><span class="eyebrow">STAY CONNECTED</span><h2>Let's make time<br/>for <em>you.</em></h2><p>Walk in for a serene spa experience or request home service for comfort in your own space. Message us for availability, location, and appointment confirmation.</p><a class="btn gold" href="https://www.facebook.com/sparadisemassagespa" rel="noopener" target="_blank">Visit Our Facebook ↗</a><p class="hours">Open daily · 2:00 PM – 2:00 AM</p></section></main><footer><div class="footer-brand"><img alt="Sparadise logo" src="assets/logo.jpg"/><span>SPARADISE<small>MASSAGE &amp; SPA</small></span></div><p>Find your peace. Feel your paradise.</p><p>© <span id="year"></span> Sparadise Massage and Spa</p></footer><a aria-label="Chat with Sparadise on Facebook" class="chat-float" href="https://www.facebook.com/sparadisemassagespa" rel="noopener noreferrer" target="_blank"><span class="chat-symbol">✉</span><span>Need help? Chat with us</span></a><script src="script.js"></script></body></html>
+<html lang="en">
+ <head>
+  <!-- EDIT WEBSITE TITLE, FONTS, AND STYLESHEET HERE -->
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <meta content="#51141e" name="theme-color"/>
+  <title>
+   Sparadise | Massage &amp; Spa
+  </title>
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&amp;family=Playfair+Display:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+  <link href="styles.css" rel="stylesheet"/>
+ </head>
+ <body>
+  <!-- PHOTO GUIDE: Change src="assets/spa-hero.png" for the hero image. -->
+  <!-- Other photos live in the assets/ folder; keep filenames or update src paths. -->
+  <header class="header">
+   <a class="brand" href="#home">
+    <img alt="Sparadise logo" src="assets/logo.jpg"/>
+    <span>
+     SPARADISE
+     <small>
+      MASSAGE &amp; SPA
+     </small>
+    </span>
+   </a>
+   <button aria-expanded="false" aria-label="Toggle navigation" class="menu">
+    ☰
+   </button>
+   <nav id="nav">
+    <a href="#home">
+     Home
+    </a>
+    <a href="#services">
+     Services
+    </a>
+    <a href="#about">
+     About
+    </a>
+    <a href="#contact">
+     Contact
+    </a>
+    <a class="nav-book" href="#booking">
+     Book Now &nearrow;
+    </a>
+   </nav>
+  </header>
+  <main>
+   <!-- HOME SECTION: edit content below -->
+   <section class="hero" id="home">
+    <img alt="Luxurious tropical spa with massage tables" class="hero-img" src="assets/spa-hero.png"/>
+    <div class="hero-shade">
+    </div>
+    <div class="hero-content">
+     <span class="eyebrow">
+      WELCOME TO YOUR SANCTUARY
+     </span>
+     <h1>
+      Your moment
+      <br/>
+      of
+      <em>
+       paradise.
+      </em>
+     </h1>
+     <p>
+      Unwind, recharge, and rediscover your calm. Your escape from the everyday begins here.
+     </p>
+     <div class="hero-actions">
+      <a class="btn gold" href="#booking">
+       Book Your Escape
+       <span>
+        &nearrow;
+       </span>
+      </a>
+      <a class="btn outline" href="#services">
+       Explore Services
+      </a>
+     </div>
+    </div>
+    <span class="hero-bottom">
+     ✦ &nbsp; RELAX &middot; RESTORE &middot; REJUVENATE
+    </span>
+   </section>
+   <section class="intro section">
+    <span class="eyebrow dark">
+     A LITTLE PEACE, JUST FOR YOU
+    </span>
+    <h2>
+     Where relaxation
+     <br/>
+     feels like
+     <em>
+      paradise.
+     </em>
+    </h2>
+    <p>
+     Step away from the rush and make room for yourself. At Sparadise Massage and Spa, every visit is an invitation to slow down and feel renewed.
+    </p>
+    <div class="ornament">
+     ✦
+    </div>
+   </section>
+   <!-- SERVICES SECTION: edit content below -->
+   <section class="services section" id="services">
+    <div class="section-head">
+     <div>
+      <span class="eyebrow dark">
+       TREAT YOURSELF
+      </span>
+      <h2>
+       Our
+       <em>
+        Services
+       </em>
+      </h2>
+     </div>
+     <p>
+      Explore our massage treatments, body care, and upgrades. Select a treatment to request an appointment.
+     </p>
+    </div>
+    <div class="treatment-panel" id="serviceGrid">
+     <div class="treatment-layout">
+      <div class="treatment-photo">
+       <img alt="Relaxing massage treatment with warm spa lighting" loading="lazy" src="assets/massage-treatment.jpg"/>
+       <div class="photo-caption">
+        THE ART OF RELAXATION ✦
+       </div>
+      </div>
+      <div class="treatment-content">
+       <div aria-label="Service categories" class="tabs" role="tablist">
+        <button class="tab active" data-category="Specialized" type="button">
+         Specialized
+        </button>
+        <button class="tab" data-category="Therapeutic" type="button">
+         Therapeutic
+        </button>
+        <button class="tab" data-category="Mom &amp; Baby" type="button">
+         Mom &amp; Baby
+        </button>
+        <button class="tab" data-category="Body Care" type="button">
+         Body Care
+        </button>
+        <button class="tab" data-category="Upgrades" type="button">
+         Upgrades
+        </button>
+       </div>
+       <div aria-live="polite" class="service-items" id="serviceItems">
+       </div>
+       <p class="menu-tip">
+        Tap a treatment to add it to your booking request.
+       </p>
+      </div>
+     </div>
+     <div class="menu-photo-link">
+      <a href="assets/official-menu.jpg" rel="noopener" target="_blank">
+       View official full price list &nearrow;
+      </a>
+     </div>
+    </div>
+   </section>
+   <section class="visit-options section">
+    <span class="eyebrow dark">
+     RELAX YOUR WAY
+    </span>
+    <h2>
+     Walk-In
+     <em>
+      or
+     </em>
+     Home Service
+    </h2>
+    <div class="visit-grid">
+     <article>
+      <h3>
+       ✦ Walk-In
+      </h3>
+      <p>
+       Serene ambiance, spa aroma and music, distraction-free me-time, and professional care in a clean setting.
+      </p>
+      <a href="#booking">
+       Book a Walk-In &nearrow;
+      </a>
+     </article>
+     <article>
+      <h3>
+       ⌂ Home Service
+      </h3>
+      <p>
+       Enjoy convenience, flexible scheduling, and private personalized care in the comfort of your own space.
+      </p>
+      <a href="#booking">
+       Request Home Service &nearrow;
+      </a>
+     </article>
+    </div>
+    <p class="tagline">
+     WE DELIVER PEACE HOWEVER YOU WANT IT.
+    </p>
+    <p class="home-note">
+     <strong>
+      Home service:
+     </strong>
+     ₱100 transportation fee &middot; Minimum 2 hours per therapist &middot; Can be shared by two people
+    </p>
+   </section>
+   <!-- ABOUT SECTION: edit content below -->
+   <section class="feature" id="about">
+    <div class="feature-image">
+     <img alt="Warm stone massage treatment" src="assets/hotstone-massage.jpg"/>
+    </div>
+    <div class="feature-copy">
+     <span class="eyebrow">
+      THE SPARADISE EXPERIENCE
+     </span>
+     <h2>
+      A pause you
+      <br/>
+      <em>
+       deserve.
+      </em>
+     </h2>
+     <p>
+      Whether you're planning a little me-time or a thoughtful treat for someone special, Sparadise is here to help you find your calm.
+     </p>
+     <a class="btn gold" href="#booking">
+      Reserve Your Moment &nearrow;
+     </a>
+    </div>
+   </section>
+   <!-- BOOKING SECTION: edit content below -->
+   <section class="booking section" id="booking">
+    <div class="booking-heading">
+     <span class="eyebrow dark">
+      YOUR TIME TO UNWIND
+     </span>
+     <h2>
+      Book an
+      <em>
+       Appointment
+      </em>
+     </h2>
+     <p>
+      Choose your preferred treatment, date and time. Submit your request and we&rsquo;ll receive the details by email. We&rsquo;ll contact you to confirm availability.
+     </p>
+    </div>
+    <form class="booking-form" id="bookingForm">
+     <div class="form-grid">
+      <label>
+       Appointment type
+       <select id="appointmentType" name="type" required="">
+        <option value="">
+         Choose appointment type
+        </option>
+        <option value="Walk-In">
+         Walk-In (at the spa)
+        </option>
+        <option value="Home Service">
+         Home Service
+        </option>
+       </select>
+      </label>
+      <label>
+       Full name
+       <input autocomplete="name" name="name" placeholder="Your full name" required=""/>
+      </label>
+      <label>
+       Mobile number
+       <input autocomplete="tel" inputmode="tel" name="phone" placeholder="09XX XXX XXXX" required=""/>
+      </label>
+      <label>
+       Preferred service
+       <select id="serviceSelect" name="service" required="">
+        <option value="">
+         Select a service
+        </option>
+       </select>
+      </label>
+      <label>
+       Duration / option
+       <select id="durationSelect" name="duration" required="">
+        <option value="">
+         Select duration or option
+        </option>
+       </select>
+      </label>
+      <label>
+       Number of guests
+       <select name="guests" required="">
+        <option value="1">
+         1 guest
+        </option>
+        <option value="2">
+         2 guests
+        </option>
+        <option value="3">
+         3 guests
+        </option>
+        <option value="4">
+         4 guests
+        </option>
+       </select>
+      </label>
+      <label>
+       Preferred date
+       <input id="date" name="date" required="" type="date"/>
+      </label>
+      <label>
+       Preferred time
+       <input name="time" required="" type="time"/>
+      </label>
+     </div>
+     <label hidden="" id="addressWrap">
+      Home service address
+      <textarea id="homeAddress" name="address" placeholder="House number, street, barangay, city, landmarks" rows="2"></textarea>
+     </label>
+     <label>
+      Special requests (optional)
+      <textarea name="notes" placeholder="Anything you'd like us to know?" rows="4"></textarea>
+     </label>
+     <input aria-hidden="true" autocomplete="off" name="_honey" style="position:absolute;left:-9999px" tabindex="-1" type="text"/>
+     <button class="btn burgundy" id="submitBooking" type="submit">
+      Send Booking Request &nearrow;
+     </button>
+     <p aria-live="polite" id="bookingStatus" role="status">
+     </p>
+     <p class="form-hint">
+      Appointment requests are subject to confirmation. Open daily 2:00 PM&ndash;2:00 AM. Home service: ₱100 transport fee and minimum 2 hours per therapist (may be shared by two people).
+     </p>
+     <div class="booking-result" hidden="" id="bookingResult">
+      <strong>
+       Booking request sent!
+      </strong>
+      <p id="bookingSummary">
+      </p>
+      <p class="form-hint">
+       We have submitted your request for email delivery. Your appointment is not confirmed until Sparadise contacts you.
+      </p>
+      <a class="btn light" href="https://www.facebook.com/sparadisemassagespa" rel="noopener" target="_blank">
+       Questions? Chat with us &nearrow;
+      </a>
+     </div>
+    </form>
+   </section>
+   <!-- CONTACT SECTION: edit content below -->
+   <section class="contact section" id="contact">
+    <span class="eyebrow">
+     STAY CONNECTED
+    </span>
+    <h2>
+     Let's make time
+     <br/>
+     for
+     <em>
+      you.
+     </em>
+    </h2>
+    <p>
+     Walk in for a serene spa experience or request home service for comfort in your own space. Message us for availability, location, and appointment confirmation.
+    </p>
+    <a class="btn gold" href="https://www.facebook.com/sparadisemassagespa" rel="noopener" target="_blank">
+     Visit Our Facebook &nearrow;
+    </a>
+    <p class="hours">
+     Open daily &middot; 2:00 PM &ndash; 2:00 AM
+    </p>
+   </section>
+  </main>
+  <footer>
+   <div class="footer-brand">
+    <img alt="Sparadise logo" src="assets/logo.jpg"/>
+    <span>
+     SPARADISE
+     <small>
+      MASSAGE &amp; SPA
+     </small>
+    </span>
+   </div>
+   <p>
+    Find your peace. Feel your paradise.
+   </p>
+   <p>
+    &copy;
+    <span id="year">
+    </span>
+    Sparadise Massage and Spa
+   </p>
+  </footer>
+  <a aria-label="Chat with Sparadise on Facebook" class="chat-float" href="https://www.facebook.com/sparadisemassagespa" rel="noopener noreferrer" target="_blank">
+   <span class="chat-symbol">
+    ✉
+   </span>
+   <span>
+    Need help? Chat with us
+   </span>
+  </a>
+  <script src="script.js">
+  </script>
+ </body>
+</html>
