@@ -1,7 +1,7 @@
-SPARADISE MASSAGE AND SPA — EMAIL BOOKING
+SPARADISE BOOKING FIX
 
-Open index.html to preview. Upload the entire folder to Hostinger public_html.
+Upload index.html, script.js and styles.css to the ROOT of your GitHub repository, replacing the old files. Keep all existing photos in the same root directory.
 
-Bookings submit through FormSubmit (https://formsubmit.co) to rhizza2020@gmail.com. IMPORTANT: The owner must confirm the one-time activation email sent by FormSubmit before deliveries work. Check spam/junk. Booking submission is a request, not a confirmed reservation.
+The booking form now uses a normal HTML POST to https://formsubmit.co/rhizza2020@gmail.com instead of AJAX. FormSubmit may show verification or activation steps. Check rhizza2020@gmail.com (including Spam) for an activation email, and click its activation link. Submit a test booking again.
 
-FormSubmit is a third-party service: customer booking details are transmitted to FormSubmit for email forwarding. No database or scheduling availability check is included. Test with a sample booking after publishing.
+Do not assume a booking was received until FormSubmit confirms submission and an email actually arrives. Appointment confirmation remains manual.

@@ -243,10 +243,16 @@
       </em>
      </h2>
      <p>
-      Choose your preferred treatment, date and time. Submit your request and we&rsquo;ll receive the details by email. We&rsquo;ll contact you to confirm availability.
+      Choose your preferred treatment, date and time. Submit your request through our secure email form. You may be redirected to FormSubmit to complete verification. We&rsquo;ll contact you to confirm availability.
      </p>
     </div>
-    <form class="booking-form" id="bookingForm">
+    <form class="booking-form" id="bookingForm" action="https://formsubmit.co/rhizza2020@gmail.com" method="POST">
+      <!-- FormSubmit sends bookings to the email above after email activation. -->
+      <input type="hidden" name="_subject" value="New SPARADISE Appointment Request"/>
+      <input type="hidden" name="_template" value="table"/>
+      <input type="hidden" name="_captcha" value="true"/>
+      <input type="hidden" name="Listed price" id="bookingPrice" value=""/>
+      <input type="hidden" name="Home service terms" id="bookingTerms" value=""/>
      <div class="form-grid">
       <label>
        Appointment type

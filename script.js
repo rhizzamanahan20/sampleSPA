@@ -16,53 +16,36 @@ const typeField=document.getElementById('appointmentType'),addressWrap=document.
 const bookingForm=document.getElementById('bookingForm');
 const bookingStatus=document.getElementById('bookingStatus');
 const submitBooking=document.getElementById('submitBooking');
-bookingForm.addEventListener('submit',async e=>{
- e.preventDefault();
- if(!bookingForm.reportValidity())return;
- const data=new FormData(bookingForm);
- if(data.get('_honey'))return;
- const rate=prices[data.get('service')];
- const i=durations.indexOf(data.get('duration'));
- const cost=Array.isArray(rate)?rate[i]:rate;
- const details={
-  'Full name':data.get('name'),
-  'Mobile number':data.get('phone'),
-  'Appointment type':data.get('type'),
-  'Home service address':data.get('type')==='Home Service'?data.get('address'):'Not applicable',
-  'Massage or treatment':data.get('service'),
-  'Duration':data.get('duration'),
-  'Listed price':cost===undefined?'Please confirm':'PHP '+cost,
-  'Number of guests':data.get('guests'),
-  'Preferred date':data.get('date'),
-  'Preferred time':data.get('time'),
-  'Special requests':data.get('notes')||'None',
-  'Home service terms':data.get('type')==='Home Service'?'PHP 100 transport fee; minimum 2 hours per therapist, shareable by two people':'Not applicable'
- };
- submitBooking.disabled=true;
- submitBooking.textContent='Sending request…';
- bookingStatus.textContent='Submitting your booking request…';
- document.getElementById('bookingResult').hidden=true;
- try{
-  const payload=new FormData();
-  Object.entries(details).forEach(([key,value])=>payload.append(key,value));
-  payload.append('_subject','New Sparadise Appointment Request — '+data.get('name'));
-  payload.append('_template','table');
-  payload.append('_captcha','true');
-  payload.append('_honey','');
-  const response=await fetch('https://formsubmit.co/ajax/rhizza2020@gmail.com',{
-   method:'POST',body:payload,headers:{'Accept':'application/json'}
-  });
-  const result=await response.json();
-  if(!response.ok||result.success===false||result.success==='false')throw new Error('Email service did not accept the request');
-  document.getElementById('bookingSummary').textContent=Object.entries(details).map(([key,value])=>key+': '+value).join('\n');
-  document.getElementById('bookingResult').hidden=false;
-  bookingStatus.textContent='Request submitted! Please wait for confirmation from Sparadise.';
-  bookingForm.reset();
-  addressWrap.hidden=true;homeAddress.required=false;
-  durationSelect.innerHTML='<option value="">Select duration or option</option>';
-  document.getElementById('bookingResult').scrollIntoView({behavior:'smooth',block:'center'});
- }catch(error){
-  bookingStatus.textContent='We could not send your booking request. Please try again or use the Chat With Us button to contact Sparadise on Facebook.';
- }finally{submitBooking.disabled=false;submitBooking.textContent='Send Booking Request ↗'}
+// Use a normal browser form submission instead of fetch/AJAX.
+// This avoids AJAX/CORS/JSON errors and allows FormSubmit's activation and
+// verification pages to display directly to the customer.
+bookingForm.addEventListener('submit', event => {
+  if (!bookingForm.reportValidity()) {
+    event.preventDefault();
+    return;
+  }
+
+  const data = new FormData(bookingForm);
+  if (data.get('_honey')) {
+    event.preventDefault();
+    return;
+  }
+
+  const rate = prices[data.get('service')];
+  const durationIndex = durations.indexOf(data.get('duration'));
+  const cost = Array.isArray(rate) ? rate[durationIndex] : rate;
+  document.getElementById('bookingPrice').value =
+    cost == null ? 'Please confirm' : 'PHP ' + cost;
+  document.getElementById('bookingTerms').value =
+    data.get('type') === 'Home Service'
+      ? 'PHP 100 transport fee; minimum 2 hours per therapist, shareable by two people'
+      : 'Not applicable';
+
+  bookingStatus.textContent = 'Opening the secure booking submission page…';
+  submitBooking.disabled = true;
+  submitBooking.textContent = 'Submitting…';
+  // No preventDefault: the browser submits directly to FormSubmit.
+  // Only FormSubmit can confirm acceptance; do not display a false success message.
 });
+
 const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('in-view');observer.unobserve(entry.target)}}),{threshold:.08});document.querySelectorAll('.section,.feature,.service-items').forEach(el=>{el.classList.add('scroll-reveal');observer.observe(el)});
