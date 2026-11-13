@@ -16,35 +16,69 @@ const typeField=document.getElementById('appointmentType'),addressWrap=document.
 const bookingForm=document.getElementById('bookingForm');
 const bookingStatus=document.getElementById('bookingStatus');
 const submitBooking=document.getElementById('submitBooking');
-// Use a normal browser form submission instead of fetch/AJAX.
-// This avoids AJAX/CORS/JSON errors and allows FormSubmit's activation and
-// verification pages to display directly to the customer.
-bookingForm.addEventListener('submit', event => {
-  if (!bookingForm.reportValidity()) {
-    event.preventDefault();
+// Booking is sent through EmailJS; do not display success before it resolves.
+bookingForm.addEventListener('submit', async event => {
+  event.preventDefault();
+  if (!bookingForm.reportValidity()) return;
+  const config = window.SPARADISE_EMAILJS || {};
+  const ready = ['publicKey','serviceId','templateId'].every(key =>
+    config[key] && !String(config[key]).startsWith('YOUR_'));
+  if (!ready) {
+    bookingStatus.textContent = 'Online booking is being configured. Please use Chat With Us on Facebook for now.';
     return;
   }
-
+  if (!window.emailjs) {
+    bookingStatus.textContent = 'Email service is temporarily unavailable. Please try again or chat with us.';
+    return;
+  }
   const data = new FormData(bookingForm);
-  if (data.get('_honey')) {
-    event.preventDefault();
-    return;
-  }
-
+  if (data.get('_honey')) return;
   const rate = prices[data.get('service')];
-  const durationIndex = durations.indexOf(data.get('duration'));
-  const cost = Array.isArray(rate) ? rate[durationIndex] : rate;
-  document.getElementById('bookingPrice').value =
-    cost == null ? 'Please confirm' : 'PHP ' + cost;
-  document.getElementById('bookingTerms').value =
-    data.get('type') === 'Home Service'
-      ? 'PHP 100 transport fee; minimum 2 hours per therapist, shareable by two people'
-      : 'Not applicable';
-
-  bookingStatus.textContent = 'Opening the secure booking submission page…';
-  submitBooking.textContent = 'Submitting…';
-  // No preventDefault: the browser submits directly to FormSubmit.
-  // Only FormSubmit can confirm acceptance; do not display a false success message.
+  const cost = Array.isArray(rate) ? rate[durations.indexOf(data.get('duration'))] : rate;
+  const details = {
+    'Customer name': data.get('name'),
+    'Mobile number': data.get('phone'),
+    'Appointment type': data.get('type'),
+    'Home service address': data.get('type') === 'Home Service' ? data.get('address') : 'Not applicable',
+    'Service': data.get('service'),
+    'Duration': data.get('duration'),
+    'Listed price': cost == null ? 'Please confirm' : 'PHP ' + cost,
+    'Guests': data.get('guests'),
+    'Date': data.get('date'),
+    'Time': data.get('time'),
+    'Special requests': data.get('notes') || 'None',
+    'Home service terms': data.get('type') === 'Home Service'
+      ? 'PHP 100 transportation fee; minimum 2 hours per therapist (shareable by two people)'
+      : 'Not applicable'
+  };
+  const summary = Object.entries(details).map(([key, value]) => key + ': ' + value).join('\n');
+  const params = {
+    to_email: 'rhizza2020@gmail.com',
+    customer_name: String(data.get('name')),
+    customer_phone: String(data.get('phone')),
+    booking_details: summary,
+    subject: 'New Sparadise Booking Request — ' + data.get('name')
+  };
+  submitBooking.disabled = true;
+  submitBooking.textContent = 'Sending request…';
+  bookingStatus.textContent = 'Sending your booking request…';
+  document.getElementById('bookingResult').hidden = true;
+  try {
+    await emailjs.send(config.serviceId, config.templateId, params, { publicKey: config.publicKey });
+    document.getElementById('bookingSummary').textContent = summary;
+    document.getElementById('bookingResult').hidden = false;
+    bookingStatus.textContent = 'Booking request sent! Please wait for Sparadise to confirm your appointment.';
+    bookingForm.reset();
+    addressWrap.hidden = true;
+    homeAddress.required = false;
+    durationSelect.innerHTML = '<option value="">Select duration or option</option>';
+    document.getElementById('bookingResult').scrollIntoView({behavior:'smooth',block:'center'});
+  } catch (error) {
+    console.error('EmailJS booking error:', error);
+    bookingStatus.textContent = 'Booking was not sent. Please try again or use Chat With Us on Facebook.';
+  } finally {
+    submitBooking.disabled = false;
+    submitBooking.textContent = 'Send Booking Request ↗';
+  }
 });
-
 const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('in-view');observer.unobserve(entry.target)}}),{threshold:.08});document.querySelectorAll('.section,.feature,.service-items').forEach(el=>{el.classList.add('scroll-reveal');observer.observe(el)});

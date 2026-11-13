@@ -1,0 +1,24 @@
+SPARADISE — EMAILJS SETUP (GitHub Pages)
+
+1. Visit https://dashboard.emailjs.com/ and sign up/log in.
+2. Email Services > Add New Service > connect your Gmail rhizza2020@gmail.com. Follow EmailJS/Gmail authorization.
+3. Copy the Service ID.
+4. Email Templates > Create New Template. Set To Email to rhizza2020@gmail.com (fixed recipient in the template).
+   Suggested subject: New Sparadise Booking — {{customer_name}}
+   Suggested email body:
+   New appointment request from {{customer_name}}
+   Mobile: {{customer_phone}}
+
+   {{booking_details}}
+
+   Please contact the customer to confirm availability.
+5. Save template and copy its Template ID.
+6. Account > General > Public Key: copy the public key.
+7. Open emailjs-config.js and replace YOUR_PUBLIC_KEY, YOUR_SERVICE_ID, YOUR_TEMPLATE_ID.
+8. Upload ALL files in this folder to your GitHub repository ROOT (same folder as index.html). No assets folder.
+9. Wait for GitHub Pages to deploy, open an incognito window, submit a TEST booking.
+10. Check Gmail Inbox and Spam. A successful EmailJS API response means accepted for sending, not guaranteed inbox delivery.
+
+IMPORTANT: Never put your Gmail password or EmailJS private key into GitHub.
+If it says 'Online booking is being configured', check emailjs-config.js and ensure it was committed.
+If email does not arrive, verify the Gmail service connection and template recipient in EmailJS dashboard.

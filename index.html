@@ -246,11 +246,8 @@
       Choose your preferred treatment, date and time. Submit your request through our secure email form. You may be redirected to FormSubmit to complete verification. We&rsquo;ll contact you to confirm availability.
      </p>
     </div>
-    <form class="booking-form" id="bookingForm" action="https://formsubmit.co/rhizza2020@gmail.com" method="POST">
+    <form class="booking-form" id="bookingForm" >
       <!-- FormSubmit sends bookings to the email above after email activation. -->
-      <input type="hidden" name="_subject" value="New SPARADISE Appointment Request"/>
-      <input type="hidden" name="_template" value="table"/>
-      <input type="hidden" name="_captcha" value="true"/>
       <input type="hidden" name="Listed price" id="bookingPrice" value=""/>
       <input type="hidden" name="Home service terms" id="bookingTerms" value=""/>
      <div class="form-grid">
@@ -326,7 +323,6 @@
       Special requests (optional)
       <textarea name="notes" placeholder="Anything you'd like us to know?" rows="4"></textarea>
      </label>
-     <input aria-hidden="true" autocomplete="off" name="_honey" style="position:absolute;left:-9999px" tabindex="-1" type="text"/>
      <button class="btn burgundy" id="submitBooking" type="submit">
       Send Booking Request &nearrow;
      </button>
@@ -342,7 +338,7 @@
       <p id="bookingSummary">
       </p>
       <p class="form-hint">
-       We have submitted your request for email delivery. Your appointment is not confirmed until Sparadise contacts you.
+       Your booking request was accepted by our email service. Your appointment is not confirmed until Sparadise contacts you.
       </p>
       <a class="btn light" href="https://www.facebook.com/sparadisemassagespa" rel="noopener" target="_blank">
        Questions? Chat with us &nearrow;
@@ -402,7 +398,9 @@
     Need help? Chat with us
    </span>
   </a>
-  <script src="script.js?v=20261113b">
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@5/dist/email.min.js"></script>
+  <script src="emailjs-config.js?v=20261113c"></script>
+  <script src="script.js?v=20261113c">
   </script>
  </body>
 </html>
