@@ -11,11 +11,11 @@
   <link href="https://fonts.googleapis.com" rel="preconnect"/>
   <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&amp;family=Playfair+Display:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
-  <link href="styles.css?v=20261113b" rel="stylesheet"/>
+  <link href="styles.css?v=emailjsfix20261114" rel="stylesheet"/>
  </head>
  <body>
   <!-- PHOTO GUIDE: Change src="spa-hero.png" for the hero image. -->
-  <!-- Other photos live in the  folder; keep filenames or update src paths. -->
+  <!-- All photos are stored beside index.html; keep filenames or update src paths. -->
   <header class="header">
    <a class="brand" href="#home">
     <img alt="Sparadise logo" src="logo.jpg"/>
@@ -243,11 +243,11 @@
       </em>
      </h2>
      <p>
-      Choose your preferred treatment, date and time. Submit your request through our secure email form. You may be redirected to FormSubmit to complete verification. We&rsquo;ll contact you to confirm availability.
+      Choose your preferred treatment, date and time. Submit your appointment request directly from this page. We&rsquo;ll contact you to confirm availability.
      </p>
     </div>
     <form class="booking-form" id="bookingForm" >
-      <!-- FormSubmit sends bookings to the email above after email activation. -->
+      <!-- EmailJS sends appointment requests using emailjs-config.js. -->
       <input type="hidden" name="Listed price" id="bookingPrice" value=""/>
       <input type="hidden" name="Home service terms" id="bookingTerms" value=""/>
      <div class="form-grid">
@@ -399,8 +399,8 @@
    </span>
   </a>
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@5/dist/email.min.js"></script>
-  <script src="emailjs-config.js?v=20261113d"></script>
-  <script src="script.js?v=20261113d">
+  <script src="emailjs-config.js?v=emailjsfix20261114"></script>
+  <script src="script.js?v=emailjsfix20261114">
   </script>
  </body>
 </html>

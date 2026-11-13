@@ -75,7 +75,7 @@ bookingForm.addEventListener('submit', async event => {
     document.getElementById('bookingResult').scrollIntoView({behavior:'smooth',block:'center'});
   } catch (error) {
     console.error('EmailJS booking error:', error);
-    bookingStatus.textContent = 'Booking was not sent. Please try again or use Chat With Us on Facebook.';
+    bookingStatus.textContent = 'Booking was not sent (' + (error?.status || 'connection error') + '). Please check EmailJS settings or use Chat With Us.';
   } finally {
     submitBooking.disabled = false;
     submitBooking.textContent = 'Send Booking Request ↗';
