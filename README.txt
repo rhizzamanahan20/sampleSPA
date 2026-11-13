@@ -1,7 +1,8 @@
-SPARADISE BOOKING FIX
+SPARADISE - GITHUB PAGES BOOKING UPDATE
 
-Upload index.html, script.js and styles.css to the ROOT of your GitHub repository, replacing the old files. Keep all existing photos in the same root directory.
-
-The booking form now uses a normal HTML POST to https://formsubmit.co/rhizza2020@gmail.com instead of AJAX. FormSubmit may show verification or activation steps. Check rhizza2020@gmail.com (including Spam) for an activation email, and click its activation link. Submit a test booking again.
-
-Do not assume a booking was received until FormSubmit confirms submission and an email actually arrives. Appointment confirmation remains manual.
+Upload all files to the ROOT of your GitHub Pages publishing branch. Replace index.html, script.js, styles.css, and upload all image files.
+The HTML references versioned CSS and JS URLs to avoid stale browser cache.
+Booking uses a normal POST to https://formsubmit.co/rhizza2020@gmail.com and requires email activation.
+Check GitHub Pages Settings > Pages for the publishing branch/folder.
+Test using a private/incognito window after deployment.
+Email delivery is not guaranteed until FormSubmit activation and a successful test.

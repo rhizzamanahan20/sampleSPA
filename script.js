@@ -42,7 +42,6 @@ bookingForm.addEventListener('submit', event => {
       : 'Not applicable';
 
   bookingStatus.textContent = 'Opening the secure booking submission page…';
-  submitBooking.disabled = true;
   submitBooking.textContent = 'Submitting…';
   // No preventDefault: the browser submits directly to FormSubmit.
   // Only FormSubmit can confirm acceptance; do not display a false success message.
